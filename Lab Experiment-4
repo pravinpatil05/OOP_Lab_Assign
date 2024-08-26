@@ -1,0 +1,88 @@
+/*Design a base class shape with two double type values and member functions to input the data
+and compute_area() for calculating area of shape. Derive two classes: triangle and rectangle. Make
+compute_area() as abstract function and redefine this function in the derived class to suit their
+requirements. Write a program that accepts dimensions of triangle/rectangle and display
+calculated area. Implement dynamic binding for given case study.*/
+
+package it;
+import java.util.Scanner;
+
+abstract class shape
+{
+	double a;
+	double b;
+	double area;
+	abstract void accept() {}
+	abstract void display () {}
+	abstract void compute_area() {}
+}
+class triangle extends shape
+{
+	void accept()
+	{
+		Scanner sc= new Scanner (System.in);
+		System.out.println("Enter value of length of triangle:");
+		a=sc.nextDouble();
+		System.out.println("Enter value of breadth of triangle:");
+		b=sc.nextDouble();
+	}
+	void compute_area()
+	{
+		area= 0.5*a*b;
+	}
+	void display()
+	{
+		System.out.println("Area of triangle having length "+a+" and breadth "+b+" is "+this.area);
+	}
+}
+class rectangle extends shape
+{
+	void accept()
+	{
+		Scanner sc= new Scanner (System.in);
+		System.out.println("Enter value of first side of rectangle:");
+		a=sc.nextDouble();
+		System.out.println("Enter value of second side of rectangle:");
+		b=sc.nextDouble();
+	}
+	void compute_area()
+	{
+		area= a*b;
+	}
+	void display()
+	{
+		System.out.println("Area of rectangle having first side as "+a+" and second side as "+b+" is "+this.area);
+	}
+}
+
+public class Expt3oop
+{
+	public static void main(String args[])
+	{
+		int x;
+		Scanner sc= new Scanner (System.in);
+		System.out.println("Select choice of shape");
+		System.out.println("1.Triangle");
+		System.out.println("2.Rectangle");
+		x=sc.nextInt();
+		switch(x)
+		{
+		case 1:
+			System.out.println("You have chosen Triangle");
+			shape t= new triangle();
+			t.accept();
+			t.compute_area();
+			t.display();
+			break;
+		case 2:
+			System.out.println("You have chosen Triangle");
+			shape r= new rectangle();
+			r.accept();
+			r.compute_area();
+			r.display();
+			break;
+		default:
+			System.out.println("Invalid outcome");
+		}
+	}
+}
